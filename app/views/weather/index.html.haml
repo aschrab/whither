@@ -13,7 +13,7 @@
     - if @location
       %section
         Current weather for
-        = @location.zipcode
+        %span.location= @location.zipcode
 
         Temparature
         = @weather.temperature.fahrenheit
