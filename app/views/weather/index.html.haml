@@ -10,5 +10,10 @@
         Address:
         %input{ name: 'address' }
 
-    %section
-      = @weather
+    - if @location
+      %section
+        Current weather for
+        = @location.zipcode
+
+        Temparature
+        = @weather.temperature.fahrenheit
