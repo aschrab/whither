@@ -1,0 +1,14 @@
+%html
+  %head
+    %title Weather
+
+  %body
+    This is a forecast: There will be weather.
+
+    %form
+      %label
+        Address:
+        %input{ name: 'address' }
+
+    %section
+      = @weather
