@@ -45,6 +45,9 @@ class Location
 
   # Methods below this are mainly meant for internal use, but not protected to allow easier testing.
 
+  def cache_key = "Location:#{address}"
+  def cache_for = 1.day
+
   def base_uri
     'https://maps.googleapis.com/maps/api/geocode/json'
   end

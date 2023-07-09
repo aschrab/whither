@@ -35,6 +35,9 @@ class Weather
 
   def current = data['main']
 
+  def cache_key = "Weather:#{@location.zipcode}"
+  def cache_for = 30.minutes
+
   def temperature = Temperature.new(current['temp'])
   def low = Temperature.new(current['temp_min'])
   def high = Temperature.new(current['temp_max'])

@@ -19,6 +19,7 @@ class WeatherControllerTest < ActionDispatch::IntegrationTest
 
     weather = Minitest::Mock.new
     weather.expect :temperature, Temperature.new(60, :fahrenheit)
+    weather.expect :cached?, false
 
     Location.stub :new, location do
       Weather.stub :new, weather do

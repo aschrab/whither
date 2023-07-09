@@ -8,11 +8,20 @@ module ApiClient
     uri
   end
 
+  # Is this based on cached data
+  #
+  # @returns [Boolean]
+  def cached? = @cached
+
   # Make HTTP request to get data from address returned by #url method
   #
   # @return [String] the HTTP response body
   def get
-    Net::HTTP.get(url)
+    @cached = true
+    Rails.cache.fetch(self, expires_in: cache_for) do
+      @cached = false
+      Net::HTTP.get(url)
+    end
   end
 
   # Parse JSON data returned by #get method, this may include metadata

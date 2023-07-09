@@ -17,3 +17,6 @@
 
         Temparature
         = @weather.temperature.fahrenheit
+
+        - if @weather.cached?
+          (Cached)
