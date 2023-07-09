@@ -16,10 +16,14 @@ class WeatherControllerTest < ActionDispatch::IntegrationTest
     zip = '95014'
     location = Minitest::Mock.new
     location.expect :zipcode, zip
+    location.expect :address, 'Dummy address'
 
     weather = Minitest::Mock.new
     weather.expect :temperature, Temperature.new(60, :fahrenheit)
+    weather.expect :get, nil
     weather.expect :cached?, false
+    weather.expect :high, Temperature.new(80, :fahrenheit)
+    weather.expect :low, Temperature.new(50, :fahrenheit)
 
     Location.stub :new, location do
       Weather.stub :new, weather do

@@ -3,20 +3,40 @@
     %title Weather
 
   %body
-    This is a forecast: There will be weather.
+
+    %h1 Weather
 
     %form
+      %p Enter an address for which you want to see the weather.
+
       %label
         Address:
-        %input{ name: 'address' }
+        %input{ name: 'address', size: 50, value: @location.address }
 
-    - if @location
-      %section
-        Current weather for
-        %span.location= @location.zipcode
+      %input{ type: 'submit', value: 'Submit' }
 
-        Temparature
-        = @weather.temperature.fahrenheit
+    - if @weather
+      %main
+        %div.weather
+          %h2 Temperatures
 
-        - if @weather.cached?
-          (Cached)
+          %div
+            Weather for
+            %span.location= @location.zipcode
+            - if @weather.cached?
+              (Cached)
+
+          %div.temp
+            %h3 Current
+            %span.current= '%.1f' % @weather.temperature.fahrenheit
+            °F
+
+          %div.temp
+            %h3 High
+            %span.high= '%.1f' % @weather.high.fahrenheit
+            °F
+
+          %div.temp
+            %h3 Low
+            %span.low= '%.1f' % @weather.low.fahrenheit
+            °F

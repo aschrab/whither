@@ -13,3 +13,5 @@
  *= require_tree .
  *= require_self
  */
+
+.temp h3 { display: inline; }
